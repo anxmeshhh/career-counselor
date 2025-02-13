@@ -179,3 +179,23 @@ body {
     z-index: -1;
     background: var(--bg-color);
 }
+
+
+.message-box {
+    background-color: #ff4d4d; /* Red background */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+/* Success message */
+.success {
+    background-color: #28a745; /* Green */
+}
+
+/* Error message */
+.error {
+    background-color: #dc3545; /* Red */
+}

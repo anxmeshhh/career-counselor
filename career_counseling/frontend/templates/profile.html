@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+
+    <link rel="stylesheet" href="{% static 'profile.css' %}">
+</head>
+<body>
+    <main class="profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-image-container">
+                    <img src="https://placekitten.com/200/200" alt="Profile picture" class="profile-image">
+                    <div class="image-overlay">
+                        <span class="change-photo">Change Photo</span>
+                    </div>
+                </div>
+                <h1 class="profile-name">John Doe</h1>
+                <p class="profile-title">Software Developer</p>
+            </div>
+            
+            <div class="profile-info">
+                <form class="profile-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" value="John Doe" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" value="john.doe@example.com" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" value="+1 (555) 123-4567" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea id="address" class="form-input" rows="3">123 Tech Street
+San Francisco, CA 94105
+United States</textarea>
+                    </div>
+
+                    <button type="submit" class="save-button">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

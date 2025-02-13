@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Career Hub</title>
-    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -19,9 +20,13 @@
                 <li><a href="#job-finder">Job Finder</a></li>
                 <li><a href="#skill-enhancement">Skill Enhancement</a></li>
             </ul>
-            <div class="profile-button">
-                <i class="fas fa-user-circle"></i>
-            </div>
+
+            <a href="{% url 'profile' %}">
+                <div class="profile-button">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </a>
+            
         </nav>
     </header>
 
@@ -59,7 +64,7 @@
             <div class="segment-content">
                 <h2>Resume Checker</h2>
                 <p>Optimize your resume with our AI-powered analysis and suggestions.</p>
-                <a href="http://192.168.70.113:8502" class="resume-checker-button">Click Here</a>
+                <a href="http://192.168.45.105:8502" class="resume-checker-button">Click Here</a>
             </div>
             <div class="segment-image">
                 <img src="https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Resume Checker">
@@ -87,7 +92,7 @@
         </section>
     </main>
     <div class="chatbot-button">
-        <a href="http://192.168.70.113:8501">
+        <a href="http://192.168.45.105:8501">
             <i class="fas fa-robot"></i>
         </a>
     </div>

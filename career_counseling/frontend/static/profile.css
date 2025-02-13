@@ -1,0 +1,182 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #111111;
+    color: #ffffff;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Profile Container */
+.profile-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+}
+
+/* Profile Card */
+.profile-card {
+    background-color: #1a1a1a;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(255, 217, 0, 0.1);
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 48px rgba(255, 217, 0, 0.2);
+}
+
+/* Profile Header */
+.profile-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.profile-image-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #ffd900;
+    transition: transform 0.3s ease;
+}
+
+.profile-image-container:hover {
+    transform: scale(1.05);
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.profile-image-container:hover .image-overlay {
+    opacity: 1;
+}
+
+.change-photo {
+    color: #ffd900;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.profile-name {
+    font-size: 2rem;
+    color: #ffd900;
+    margin-bottom: 0.5rem;
+}
+
+.profile-title {
+    color: #999;
+    font-size: 1.1rem;
+}
+
+/* Form Styles */
+.profile-form {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: grid;
+    gap: 0.5rem;
+}
+
+label {
+    color: #ffd900;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #2a2a2a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #ffd900;
+    box-shadow: 0 0 0 2px rgba(255, 217, 0, 0.2);
+}
+
+textarea.form-input {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Button */
+.save-button {
+    background-color: #ffd900;
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.save-button:hover {
+    background-color: #ffed4a;
+    transform: translateY(-2px);
+}
+
+.save-button:active {
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .profile-container {
+        padding: 1rem;
+    }
+
+    .profile-card {
+        padding: 1.5rem;
+    }
+
+    .profile-name {
+        font-size: 1.5rem;
+    }
+
+    .profile-image-container {
+        width: 120px;
+        height: 120px;
+    }
+}

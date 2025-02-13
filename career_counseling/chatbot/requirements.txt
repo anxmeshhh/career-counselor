@@ -16,4 +16,7 @@ streamlit
 google-generativeai
 python-dotenv
 pdf2image
-
+langchain
+langchain_google_genai
+faiss-cpu
+langchain_community

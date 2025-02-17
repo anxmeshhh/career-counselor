@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Management</title>
+    <link rel="stylesheet" href="{% static 'skillmanagement.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="skill-card">
+            <!-- Logo -->
+            <div class="logo" style="margin-top: 10px;">
+                <h1>Career Hub</h1>
+            </div>
+
+            <!-- Header -->
+            <div class="card-header">
+                <h1>Skill Management</h1>
+                <p class="header-subtitle">Track and manage your professional skills</p>
+            </div>
+
+            <!-- Main Content -->
+            <div class="card-content">
+                <form id="skillForm" method="POST">
+                    {% csrf_token %}
+
+                    <!-- Basic Skill Information -->
+                    <div class="section">
+                        <h2>Basic Skill Information</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="skillName">Skill Name</label>
+                                <input type="text" id="skillName" name="skill_name" placeholder="Enter skill name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="skillId">Skill ID</label>
+                                <input type="text" id="skillId" name="skill_id" placeholder="Enter skill ID" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Classification -->
+                    <div class="section">
+                        <h2>Skill Classification</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="skillCategory">Skill Category</label>
+                                <select id="skillCategory" name="skill_category" required>
+                                    <option value="">Select category</option>
+                                    <option value="technical">Technical</option>
+                                    <option value="soft">Soft Skills</option>
+                                    <option value="domain">Domain Knowledge</option>
+                                    <option value="tools">Tools & Software</option>
+                                    <option value="language">Programming Language</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="skillType">Skill Type</label>
+                                <select id="skillType" name="skill_type" required>
+                                    <option value="">Select type</option>
+                                    <option value="core">Core</option>
+                                    <option value="supplementary">Supplementary</option>
+                                    <option value="specialized">Specialized</option>
+                                    <option value="general">General</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skill Proficiency -->
+                    <div class="section">
+                        <h2>Skill Proficiency</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="skillLevel">Skill Level</label>
+                                <select id="skillLevel" name="skill_level" required>
+                                    <option value="">Select level</option>
+                                    <option value="beginner">Beginner</option>
+                                    <option value="intermediate">Intermediate</option>
+                                    <option value="advanced">Advanced</option>
+                                    <option value="expert">Expert</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="learningStatus">Learning Status</label>
+                                <select id="learningStatus" name="learning_status" required>
+                                    <option value="">Select status</option>
+                                    <option value="learning">Currently Learning</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="planned">Planned</option>
+                                    <option value="ongoing">Ongoing Practice</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certifications -->
+                    <div class="section">
+                        <h2>Related Certifications</h2>
+                        <div class="form-group">
+                            <label for="certifications">Certifications</label>
+                            <textarea id="certifications" name="certifications" placeholder="List related certifications (one per line)" rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Additional Notes -->
+                    <div class="section">
+                        <h2>Learning Notes</h2>
+                        <div class="form-group">
+                            <label for="learningNotes">Learning Progress & Notes</label>
+                            <textarea id="learningNotes" name="learning_notes" placeholder="Add your learning notes, resources, and progress tracking" rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary">Save Skill</button>
+                        <button type="reset" class="btn-secondary">Clear Form</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Handling Form Submission -->
+    <script>
+        <script>
+            document.getElementById("skillForm").addEventListener("submit", function(event) {
+                event.preventDefault(); 
+            
+                let formData = new FormData(this);
+                let csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+            
+                fetch("/save-skill/", {
+                    method: "POST",
+                    headers: { "X-CSRFToken": csrfToken },
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message) {
+                        alert("✅ " + data.message);
+                    } else {
+                        alert("❌ " + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("❌ Something went wrong. Please try again.");
+                });
+            });
+            
+            // Populate Form with Existing Data
+            window.onload = function() {
+                fetch("/skill-management/")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.skills) {
+                        document.getElementById("skillName").value = data.skills.skill_name;
+                        document.getElementById("skillId").value = data.skills.skill_id;
+                        document.getElementById("skillCategory").value = data.skills.skill_category;
+                        document.getElementById("skillType").value = data.skills.skill_type;
+                        document.getElementById("skillLevel").value = data.skills.skill_level;
+                        document.getElementById("learningStatus").value = data.skills.learning_status;
+                        document.getElementById("certifications").value = data.skills.certifications;
+                        document.getElementById("learningNotes").value = data.skills.learning_notes;
+                    }
+                })
+                .catch(error => console.error("Error fetching user skills:", error));
+            };
+            </script>
+            
+    </script>
+</body>
+</html>

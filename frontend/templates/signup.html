@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Career Hub</title>
+    <link rel="stylesheet" href="{% static 'signup.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="signup-box">
+
+            <!-- 🔹 Messages Block - Now at the Top -->
+            {% if messages %}
+                <div class="message-box">
+                    {% for message in messages %}
+                        <p class="{{ message.tags }}">{{ message }}</p> <!-- Tags for styling -->
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="logo-container">
+                <h1 class="logo">Career Hub</h1>
+                <div class="logo-animation"></div>
+            </div>
+            
+            <form class="signup-form" action="{% url 'signup' %}" method="POST">
+                {% csrf_token %}
+                
+                <div class="input-group">
+                    <input type="text" id="name" name="full_name" required>
+                    <label for="name">Full Name</label>
+                    <i class="fas fa-user"></i>
+                </div>
+            
+                <div class="input-group">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email</label>
+                    <i class="fas fa-envelope"></i>
+                </div>
+            
+                <div class="input-group">
+                    <input type="password" id="password" name="password" required>
+                    <label for="password">Password</label>
+                    <i class="fas fa-lock"></i>
+                </div>
+            
+                <div class="input-group">
+                    <input type="password" id="confirm-password" name="confirm_password" required>
+                    <label for="confirm-password">Confirm Password</label>
+                    <i class="fas fa-lock"></i>
+                </div>
+                
+                <div class="input-group">
+                    <input type="text" id="aadhaar" name="aadhaar_no" required>
+                    <label for="aadhaar">Aadhaar No</label>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+            
+            <div class="social-signup">
+                <p>Or sign up with</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <p class="login-link">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        </div>
+    </div>
+    <div class="background-animation"></div>
+</body>
+</html>

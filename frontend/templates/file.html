@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Hub - User Profile</title>
+    <link rel="stylesheet" href="{% static 'file.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-card">
+            <div class="card-header">
+                <h1><i class="fas fa-rocket"></i> Career Hub - User Profile</h1>
+            </div>
+            
+            <div class="card-content">
+                <div class="dashboard">
+                    <h2>Dashboard</h2>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-item">
+                            <div class="item-icon"><i class="fas fa-user-circle"></i></div>
+                            <div class="item-info">
+                                <h3>Profile Completion</h3>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 65%;"></div>
+                                </div>
+                                <span class="progress-text">65%</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-item">
+                            <div class="item-icon"><i class="fas fa-cogs"></i></div>
+                            <div class="item-info">
+                                <h3>Skills</h3>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 80%;"></div>
+                                </div>
+                                <span class="progress-text">8</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-item">
+                            <div class="item-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="item-info">
+                                <h3>Education</h3>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 40%;"></div>
+                                </div>
+                                <span class="progress-text">2</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-item">
+                            <div class="item-icon"><i class="fas fa-heart"></i></div>
+                            <div class="item-info">
+                                <h3>Interests</h3>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 50%;"></div>
+                                </div>
+                                <span class="progress-text">5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="userProfileForm" method="POST" action="{% url 'save_profile' %}">
+                    {% csrf_token %}
+                    <!-- Basic Information Section -->
+                    <div class="section">
+                        <h2>Basic Information</h2>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" placeholder="Enter your age" min="18" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Experience Level</label>
+                            <select id="experience" name="experience" required>
+                                <option value="">Select experience level</option>
+                                <option value="entry">Entry Level</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="expert">Expert</option>
+                                <option value="senior">Senior</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Location Section -->
+                    <div class="section">
+                        <h2>Location</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" placeholder="Enter city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input type="text" id="state" name="state" placeholder="Enter state" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="text" id="country" name="country" placeholder="Enter country" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills & Education Section -->
+                    <div class="section">
+                        <h2>Skills & Education</h2>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="skills">Skills</label>
+                                <textarea id="skills" name="skills" placeholder="Enter your skills (comma separated)" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="education">Education</label>
+                                <textarea id="education" name="education" placeholder="Enter your educational background" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interests Section -->
+                    <div class="section">
+                        <h2>Interests</h2>
+                        <div class="form-group">
+                            <label for="interests">Interests & Hobbies</label>
+                            <textarea id="interests" name="interests" placeholder="Enter your interests and hobbies" required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-submit">
+                        <button type="submit">Save Profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Form Submission -->
+    <script>
+        document.getElementById("userProfileForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form from reloading
+        
+            let formData = new FormData(this); // Automatically includes form inputs
+            let csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value; // Extract CSRF token
+        
+            fetch("{% url 'save_profile' %}", { // Django URL for form submission
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": csrfToken // Add CSRF token in headers
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    alert("✅ " + data.message);
+                    document.getElementById("userProfileForm").reset(); // Reset form after successful submission
+                } else {
+                    alert("❌ " + data.error);
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("❌ Something went wrong. Please try again.");
+            });
+        });
+    </script>
+</body>
+</html>

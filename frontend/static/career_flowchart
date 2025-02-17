@@ -1,0 +1,11 @@
+digraph {
+	"Software Engineer"
+	"Senior SE"
+	"Software Engineer" -> "Senior SE"
+	"Senior SE"
+	"Tech Lead"
+	"Senior SE" -> "Tech Lead"
+	"Tech Lead"
+	CTO
+	"Tech Lead" -> CTO
+}

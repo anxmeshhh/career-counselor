@@ -1,0 +1,277 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000000;
+    color: #FFD700;
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container and Card Styles */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.skill-card {
+    background-color: #111111;
+    border: 1px solid #FFD700;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+}
+
+/* Logo Styles */
+.logo {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #1a1a1a;
+}
+
+.logo img {
+    max-width: 150px;
+    height: auto;
+}
+
+/* Header Styles */
+.card-header {
+    background-color: #1a1a1a;
+    padding: 25px 30px;
+    border-bottom: 2px solid #FFD700;
+    text-align: center;
+}
+
+.card-header h1 {
+    color: #FFD700;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.header-subtitle {
+    color: #FFD700;
+    opacity: 0.8;
+    font-size: 16px;
+}
+
+/* Content Area */
+.card-content {
+    padding: 30px;
+}
+
+/* Section Styles */
+.section {
+    margin-bottom: 35px;
+}
+
+.section h2 {
+    color: #FFD700;
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+/* Form Grid */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* Form Group Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #FFD700;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Input Styles */
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #1a1a1a;
+    border: 1px solid #FFD700;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+/* Select Element Styles */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23FFD700' viewBox='0 0 16 16'%3E%3Cpath d='M8 12L1 5h14z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+/* Textarea Styles */
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Placeholder Styles */
+::placeholder {
+    color: #666666;
+}
+
+/* Button Styles */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #FFD700;
+    color: #000000;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #FFD700;
+    border: 1px solid #FFD700;
+}
+
+.btn-primary:hover {
+    background-color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 215, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Hover Effects */
+input:hover,
+select:hover,
+textarea:hover {
+    border-color: #ffffff;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .card-content {
+        padding: 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #FFD700;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+}
+
+/* Focus Accessibility */
+:focus {
+    outline: 2px solid #FFD700;
+    outline-offset: 2px;
+}
+
+/* Required Field Indicator */
+input:required,
+select:required {
+    background-image: 
+        linear-gradient(45deg, transparent, transparent 50%, #FFD700 50%),
+        linear-gradient(135deg, #FFD700, transparent 50%, transparent);
+    background-position: 
+        calc(100% - 20px) calc(1em + 2px),
+        calc(100% - 15px) calc(1em + 2px);
+    background-size: 
+        5px 5px,
+        5px 5px;
+    background-repeat: no-repeat;
+}
+
+/* Error State */
+input:invalid,
+select:invalid {
+    border-color: #ff4444;
+}
+
+/* Success State */
+input:valid:not(:placeholder-shown),
+select:valid:not(:placeholder-shown) {
+    border-color: #00ff00;
+}

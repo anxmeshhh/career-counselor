@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 AI-Based Course Recommender</h1>
+        <form method="POST">
+            <input type="text" name="skills" placeholder="Skills (e.g., Python, ML)" required />
+            <input type="text" name="interests" placeholder="Interests (e.g., AI, Robotics)" required />
+            <select name="department" required>
+                <option value="CSE">CSE</option>
+                <option value="IT">IT</option>
+                <option value="ECE">ECE</option>
+            </select>
+            <button type="submit">Get Recommendations</button>
+        </form>
+    </div>
+</body>
+</html>

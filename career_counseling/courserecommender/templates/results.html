@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}" />
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Recommended Courses</h1>
+        {% if recommendations %}
+            {% for course in recommendations %}
+                <div class="course-card">
+                    <div class="course-title">{{ course.name.split('(')[0].strip() }}</div>
+                    <div class="course-details">
+                        Platform: <strong>{{ course.name.split('(')[-1].replace(')', '') }}</strong>  
+                        <a href="{{ course.link }}" target="_blank" class="course-link">🔗 Visit Course</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No recommendations available. Try again later.</p>
+        {% endif %}
+        <a href="/" class="back-btn">⬅️ Back to Search</a>
+    </div>
+</body>
+</html>

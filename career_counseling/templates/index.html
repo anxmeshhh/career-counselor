@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Login System</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        video { border: 2px solid black; width: 60%; margin-top: 10px; }
+        button { padding: 10px; margin: 10px; font-size: 16px; cursor: pointer; }
+    </style>
+    <script>
+        async function registerFace() {
+            let response = await fetch('/register', { method: 'POST' });
+            let result = await response.json();
+            alert(result.message);
+        }
+
+        async function loginFace() {
+            let response = await fetch('/login', { method: 'POST' });
+            let result = await response.json();
+            alert(result.message);
+        }
+    </script>
+</head>
+<body>
+    <h1>Face Login System</h1>
+    <img src="{{ url_for('video_feed') }}" width="640" height="480">
+    <br>
+    <button onclick="registerFace()">Register Face</button>
+    <button onclick="loginFace()">Login with Face</button>
+</body>
+</html>
